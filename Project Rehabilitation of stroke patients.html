@@ -1,0 +1,324 @@
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Olivia | My Creations</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
+  <style>
+    :root {
+      --bg-x: 50%;
+      --bg-y: 50%;
+      --theme-text: #f1f1f1;
+      --theme-card: #8a4864;
+      --theme-card-hover: #1f1016;
+      --theme-accent: #8a4864;
+      --bg-gradient: radial-gradient(circle at var(--bg-x) var(--bg-y), #1b1b1b, #3a3a3a, #000000);
+    }
+
+    body {
+      margin: 0;
+      padding-top: 120px;
+      color: var(--theme-text);
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      background: var(--bg-gradient);
+      transition: background 1s ease;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-gradient);
+      z-index: -1;
+      transition: background 0.3s ease, background-position 0.1s ease;
+      pointer-events: none;
+    }
+    .navbar-wrapper {
+      background-color: var(--theme-accent);
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1000px;
+      z-index: 1000;
+      border-radius: 40px;
+      background: rgba(86, 113, 148, 0.2); /* transparenter für Glasmorphismus */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      padding: 0.5rem 1rem;
+    }
+
+    .navbar {
+      background-color: transparent !important;
+    }
+
+    .navbar-brand img {
+      height: 40px;
+    }
+
+    .nav-link {
+      color: var(--theme-text) !important;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #85e0a3 !important;
+    }
+
+    .btn-main {
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      font-size: 1.1rem;
+      background-color: var(--theme-accent);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-main:hover {
+      background: color-mix(in srgb, var(--theme-accent) 80%, #000 20%);
+      color: #fff;
+    }
+.btn-creations {
+       color: var(--theme-text);
+      background-color: var(--theme-accent);
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      text-shadow: none;
+       text-decoration: none !important;
+    }
+
+    .btn-creations:hover {
+      background: color-mix(in srgb, var(--theme-accent) 80%, #000 20%);
+      color: #fff;
+    }
+
+    .filter-btn.active {
+  background-color: var(--theme-accent);
+  color: white;
+  border-color: var(--theme-accent);
+}
+
+.hero-image {
+      height: 100vh;
+      width: 100%;
+      background: url('images/dein-bild.jpg') center center / cover no-repeat;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content-section {
+      background-color: var(--theme-bg);
+      padding: 2rem 2rem;
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .content-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .carousel-wrapper {
+      margin-top: 3rem;
+    }
+
+    .carousel-indicators [data-bs-target] {
+      background-color: var(--theme-accent);
+    }
+.overlay:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%);
+}
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar-wrapper">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.png" alt="Olivia Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="projekte.html">Projects & Work</a></li>
+          <li class="nav-item"><a class="nav-link" href="ueber-mich.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="kontakt.html">Contact</a></li>
+        </ul>
+        <button id="themeBtn" class="btn-creations" title="Surprise me! 🎨">Surprise</button>
+      </div>
+  </nav>
+</div>
+
+<!-- Hero Section mit Jarallax -->
+<section class="bg-primary-3 min-vh-100 overlay text-light d-flex align-items-end py-5 jarallax" data-jarallax data-speed="0.2">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+      </div>
+    </div>
+  </div>
+  <div class="jarallax-img" style="background-image: url('images/stroke7.png'); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 0;"></div>
+  <div class="image-opacity-gradient"></div>
+</section>
+
+<!-- Zurück-Button -->
+<div class="content-section">
+<div class="container mt-5">
+  <a href="projekte.html" class="btn-creations">
+    ← Zurück
+  </a>
+</div>
+</div>
+
+<!-- Text und Inhalt -->
+<div class="content-section">
+  <div class="container">
+    <h1>Concept - Rehabilitation of stroke patients</h1>
+    <h3>Semester Project – Human-Machine Interaction Design, 2023 Technische Hochschule Ingolstadt</h3>
+    <p>
+     As part of a group project in the course Human-Machine Interface Design, we explored rehabilitation solutions for stroke patients suffering from hand impairment. The challenge was to identify suitable devices that could support affected users in regaining hand functionality. A medical-grade rehabilitation glove, which we were required to incorporate and whose function was explained to us by a physician, formed the basis of our concept. We developed a Smart TV application that uses gesture and voice control to guide users through targeted hand exercises, helping to restore motor function in a motivating and accessible way. Data collected through the glove and software is automatically transmitted to the patient’s physician for evaluation and therapy adjustment.
+
+
+    </p>
+
+    <!-- Gallerie oder Karussell -->
+    <div id="projectGallery" class="carousel slide carousel-wrapper" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="images/stroke1.jpeg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="images/stroke2.png" class="d-block w-100" alt="...">
+        </div>
+                <div class="carousel-item">
+          <img src="images/stroke3.png" class="d-block w-100" alt="...">
+        </div>
+                <div class="carousel-item">
+          <img src="images/stroke4.png" class="d-block w-100" alt="...">
+        </div>
+                <div class="carousel-item">
+          <img src="images/stroke5.png" class="d-block w-100" alt="...">
+        </div>
+                <div class="carousel-item">
+          <img src="images/stroke6.png" class="d-block w-100" alt="...">
+        </div>
+                <div class="carousel-item">
+          <img src="images/stroke7.png" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#projectGallery" data-bs-slide-to="0" class="active" aria-current="true"></button>
+        <button type="button" data-bs-target="#projectGallery" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#projectGallery" data-bs-slide-to="2"></button>
+        <button type="button" data-bs-target="#projectGallery" data-bs-slide-to="3"></button>
+        <button type="button" data-bs-target="#projectGallery" data-bs-slide-to="4"></button>
+        <button type="button" data-bs-target="#projectGallery" data-bs-slide-to="5"></button>
+        <button type="button" data-bs-target="#projectGallery" data-bs-slide-to="6"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.addEventListener('mousemove', e => {
+    const x = (e.clientX / window.innerWidth) * 100;
+    const y = (e.clientY / window.innerHeight) * 100;
+    document.documentElement.style.setProperty('--bg-x', `${x}%`);
+    document.documentElement.style.setProperty('--bg-y', `${y}%`);
+  });
+
+  const themes = [
+    {
+      bg: 'radial-gradient(circle at var(--bg-x) var(--bg-y), #2e2a47, #1e1e2f, #121218)',
+      text: '#f1f1f1',
+      card: '#1f1f2e',
+      cardHover: '#2b2b3f',
+      accent: '#353587'
+    },
+    {
+      bg: 'radial-gradient(circle at var(--bg-x) var(--bg-y), #2d1b2f, #3e2b44, #121218)',
+      text: '#fbefff',
+      card: '#3a243e',
+      cardHover: '#513251',
+      accent: '#8153a3'
+    },
+    {
+      bg: 'radial-gradient(circle at var(--bg-x) var(--bg-y), #1b2e2f, #26494b, #121218)',
+      text: '#e0f7f7',
+      card: '#1d2f30',
+      cardHover: '#295253',
+      accent: '#3eaba2'
+    }
+  ];
+
+  let lastThemeIndex = -1;
+
+  document.getElementById('themeBtn').addEventListener('click', () => {
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * themes.length);
+    } while (newIndex === lastThemeIndex && themes.length > 1);
+
+    const theme = themes[newIndex];
+    lastThemeIndex = newIndex;
+
+    document.documentElement.style.setProperty('--theme-text', theme.text);
+    document.documentElement.style.setProperty('--theme-card', theme.card);
+    document.documentElement.style.setProperty('--theme-card-hover', theme.cardHover);
+    document.documentElement.style.setProperty('--theme-accent', theme.accent);
+    document.documentElement.style.setProperty('--bg-gradient', theme.bg);
+    document.body.style.background = theme.bg;
+    });
+</script>
+
+<footer class="text-center text-white py-4 mt-5" style="background-color: rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
+  <p class="mb-0">© 2025 Olivia. All rights reserved. | <a href="kontakt.html" style="color: var(--theme-accent); text-decoration: underline;">Contact me</a></p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jarallax/2.0.4/jarallax.min.js"></script>
+<script>
+  jarallax(document.querySelectorAll('.jarallax'), {
+    speed: 0.2
+  });
+</script>
+
+</body>
+</html>
