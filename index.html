@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olivia Dölling – Portfolio Onepager</title>
+  <meta name="description"
+    content="Olivia Dölling – UX/UI Designer. Portfolio with projects in apps, VR/AR, gamification & research.">
+  <meta property="og:title" content="Olivia Dölling – UX/UI Designer">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="images/favicon.png">
+  <!-- Montserrat Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html:focus-within {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fff;
+      color: #000;
+      overflow-x: hidden;
+      cursor: auto;
+      /* default; custom cursor shown only on desktop */
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Focus visibility */
+    :focus-visible {
+      outline: 3px solid rebeccapurple;
+      outline-offset: 3px;
+    }
+
+    /* Scroll Progress Bar */
+    #progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      z-index: 2000;
+      pointer-events: none;
+    }
+
+    #progress-bar {
+      width: 0;
+      height: 100%;
+      background: rebeccapurple;
+      transition: width 0.1s ease-out, background 0.3s ease;
+    }
+
+    /* Custom cursor (desktop only) */
+    .cursor-outer,
+    .cursor-outline,
+    .cursor {
+      position: fixed;
+      pointer-events: none;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s ease, height 0.2s ease, background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .cursor-outer {
+      width: 800px;
+      height: 800px;
+      border: 2px solid rebeccapurple;
+      z-index: 0;
+    }
+
+    .cursor-outline {
+      width: 120px;
+      height: 120px;
+      border: 2px solid rebeccapurple;
+      z-index: 2;
+    }
+
+    .cursor {
+      width: 20px;
+      height: 20px;
+      background: rebeccapurple;
+      z-index: 3;
+    }
+
+    @media (hover: none),
+    (pointer: coarse) {
+
+      .cursor-outer,
+      .cursor-outline,
+      .cursor {
+        display: none;
+      }
+
+      body {
+        cursor: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .cursor-outer,
+      .cursor-outline,
+      .cursor {
+        display: none;
+      }
+
+      * {
+        transition: none !important;
+      }
+    }
+
+    /* Layout */
+    nav[aria-label="Primary"] {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 300px;
+      background: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5rem 1rem;
+      z-index: 1000;
+    }
+
+    main {
+      margin-left: 300px;
+      margin-right: 30px;
+    }
+
+    nav img.logo,
+    nav img.profile {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .linkimg {
+      width: 30px;
+      height: 30px;
+      border-radius: 10%;
+      cursor: pointer;
+    }
+
+    nav ul {
+      list-style: none;
+      width: 100%;
+      margin: auto 0;
+    }
+
+    nav li {
+      margin: 0.5rem 0;
+    }
+
+    nav a.tab {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      padding: 0.75rem 0;
+      transition: all 0.3s ease;
+    }
+
+    nav a.tab.active {
+      color: rebeccapurple;
+    }
+
+    #contact-icons {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      z-index: 1000;
+    }
+
+    #contact-icons::before {
+      display: none;
+    }
+
+    #contact-icons::after {
+      content: '';
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 80px;
+      background: rebeccapurple;
+    }
+
+    #contact-icons a {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      border-radius: 50%;
+      transition: background 0.3s ease;
+    }
+
+    #contact-icons a:hover {
+      background: rebeccapurple;
+    }
+
+    /* Sections */
+    section {
+      min-height: min(100vh, 900px);
+      padding: 2rem;
+    }
+
+    /* Start */
+    #start {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      max-width: 800px;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    .subtitle {
+      font-size: 2rem;
+      color: rebeccapurple;
+      margin-bottom: 1rem;
+    }
+
+    /* Sidebar Email */
+    #side-email {
+      position: fixed;
+      bottom: 2rem;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-right: 1rem;
+      z-index: 1000;
+    }
+
+    #side-email a {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 0.9rem;
+      color: #000;
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    #side-email a:hover {
+      color: rebeccapurple;
+    }
+
+    #side-email .side-line {
+      width: 1px;
+      height: 80px;
+      background: #000;
+      transition: background 0.3s ease;
+    }
+
+    #side-email a:hover+.side-line {
+      background: rebeccapurple;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      margin: 4rem 0;
+      padding: 2rem 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: rebeccapurple;
+      transform: translateX(-50%);
+    }
+
+    .event {
+      position: relative;
+      width: 50%;
+      padding: 1rem 2rem;
+      box-sizing: border-box;
+    }
+
+    .timeline .event:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline .event:nth-child(even) {
+      left: 50%;
+      text-align: left;
+    }
+
+    .event .dot {
+      position: absolute;
+      top: 1.5rem;
+      width: 16px;
+      height: 16px;
+      background: rebeccapurple;
+      border-radius: 50%;
+    }
+
+    .timeline .event:nth-child(odd) .dot {
+      right: -8px;
+    }
+
+    .timeline .event:nth-child(even) .dot {
+      left: -8px;
+    }
+
+    .event .content {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      border-style: solid;
+      border-image: linear-gradient(to bottom, rebeccapurple, rgba(255, 255, 255, 0)) 1;
+      border-width: 2px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .event .content h4 {
+      margin-bottom: 0.5rem;
+      color: rebeccapurple;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+
+    /* Projects */
+    #projects .project {
+      display: flex;
+      align-items: center;
+      margin: 4rem 0;
+    }
+
+    #projects .project:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    #projects img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .info {
+      padding: 1rem;
+      max-width: 500px;
+    }
+
+    .info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Fade-in */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Carousel */
+    .carousel {
+      width: 100%;
+      position: relative;
+    }
+
+    .carousel-inner {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .carousel-inner img {
+      width: 100%;
+      height: auto;
+      display: none;
+      /* nur aktiver Slide sichtbar */
+      border-radius: 8px;
+      transition: transform .3s ease;
+    }
+
+    .carousel-inner img.active {
+      display: block;
+    }
+
+    .carousel-controls {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+      /* Container klickt nicht */
+      padding: 0 8px;
+    }
+
+    .carousel-controls button {
+      pointer-events: auto;
+      /* Buttons klickbar */
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 2px solid rebeccapurple;
+      background: #fff;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .carousel-controls button:focus-visible {
+      outline: 3px solid rebeccapurple;
+    }
+
+    .event .content {
+      max-width: 960px;
+    }
+
+    /* einheitliche Text-/Bildbreite */
+    .carousel:hover .carousel-inner img.active {
+      transform: scale(1.05);
+    }
+
+
+    /* Skills */
+    /* Skills row – one line, big icons */
+.skills-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 2rem;
+  align-items: center;
+  justify-items: center;
+  margin-top: 2rem;
+}
+
+.skill-item{
+  display: flex;
+  flex-direction: column; /* Bild + Text untereinander */
+  align-items: center;
+  text-align: center;
+}
+
+.skill-item img{
+  width: 100px; /* oder wie groß du willst */
+  height: auto;
+  object-fit: contain;
+}
+
+.skill-item span{
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #333;
+} 
+.skills-grid .skill-item img{
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+}
+
+
+    .skills-grid .skill-item img {
+      width: 100px;
+      /* ~Logo-Größe */
+      height: 100px;
+      object-fit: contain;
+    }
+
+    /* Contact Button */
+    .contact-btn {
+      align-self: flex-start;
+      max-width: 200px;
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: rebeccapurple;
+      border: 2px solid rebeccapurple;
+      border-radius: 30px;
+      background-image: linear-gradient(rebeccapurple, rebeccapurple);
+      background-size: 0% 100%;
+      background-repeat: no-repeat;
+      background-position: left center;
+      transition: background-size 0.4s ease, color 0.4s ease;
+    }
+
+    .contact-btn:hover {
+      background-size: 100% 100%;
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      nav[aria-label="Primary"] {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: auto;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem;
+      }
+
+      nav ul {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+      }
+
+      nav a.tab {
+        width: auto;
+        padding: .5rem .75rem;
+        font-size: 1rem;
+      }
+
+      main {
+        margin: 80px 16px 0 16px;
+      }
+
+      #side-email {
+        display: none;
+      }
+
+      .timeline::before {
+        left: 0;
+        transform: none;
+      }
+
+      .event {
+        width: 100%;
+        text-align: left !important;
+        padding-left: 2rem;
+      }
+
+      .timeline .event .dot {
+        left: -8px !important;
+        right: auto !important;
+      }
+
+      .skills-grid .skill-item img {
+        width: 72px;
+        height: 72px;
+      }
+    }
+
+    .profile-top {
+      position: fixed;
+      top: 4rem;
+      right: 4rem;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .15);
+      z-index: 1100;
+      cursor: pointer;
+    }
+
+    .cert-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: .5rem 1rem;
+      border: 2px solid rebeccapurple;
+      border-radius: 24px;
+      background: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #certificate-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+    }
+
+    #certificate-overlay img {
+      max-width: min(90vw, 1100px);
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+    }
+
+    #img-overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, .8);
+      z-index: 4000;
+    }
+
+    #img-overlay.active {
+      display: flex;
+    }
+
+    #img-overlay img {
+      max-width: min(95vw, 1200px);
+      max-height: 95vh;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Progress Bar -->
+  <div id="progress-container">
+    <div id="progress-bar"></div>
+  </div>
+
+  <!-- Cursors (desktop only) -->
+  <div class="cursor-outer" aria-hidden="true"></div>
+  <div class="cursor-outline" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+
+  <!-- Top-right Profile -->
+  <img src="images/Snapchat-276038821.jpg" alt="Profile" class="profile-top" onclick="location.href='#about'">
+
+
+  <!-- Navigation -->
+  <nav aria-label="Primary">
+    <img src="images/logo.png" alt="Logo" class="logo" onclick="location.href='#start'" role="link" tabindex="0">
+    <ul>
+      <li><a href="#start" class="tab active" aria-current="page">Start</a></li>
+      <li><a href="#about" class="tab">About Me</a></li>
+      <li><a href="#projects" class="tab">Projects</a></li>
+    </ul>
+    <div id="contact-icons">
+      <a href="mailto:olivia.doelling@web.de" aria-label="E-Mail">
+        <img src="images/mail.png" class="linkimg" alt="E-Mail icon" loading="lazy">
+      </a>
+      <a href="https://www.linkedin.com/in/olivia-doelling-107aba296" target="_blank" rel="noopener"
+        aria-label="LinkedIn">
+        <img src="images/linked in.png" class="linkimg" alt="LinkedIn icon" loading="lazy">
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Right side email -->
+    <div id="side-email">
+      <a href="mailto:olivia.doelling@web.de">olivia.doelling@web.de</a>
+      <div class="side-line"></div>
+    </div>
+
+    <section id="start" class="fade-in">
+      <h1>Hi, I'm Olivia Dölling,</h1>
+      <div class="subtitle">UX/UI Designer</div>
+      <p>I’m an emerging UX/UI Designer with a fresh, lifelong passion for creativity and a unique eye for detail.
+        Although I’m at the start of my professional journey, I’ve spent years sharpening my sense of color,
+        composition, and visual storytelling through studying and personal projects. My approach blends creative
+        problem-solving with a clear understanding of user needs, ensuring each design is both original and
+        purpose-driven. Eager to take on real-world challenges, I’m ready to bring a bold, inventive perspective to your
+        next project and grow alongside visionary clients.</p>
+      <a href="mailto:olivia.doelling@web.de" class="contact-btn">Contact Me</a>
+    </section>
+
+    <section id="about" class="fade-in">
+      <h1>About Me</h1>
+      <div class="timeline">
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <h4>2021–Present</h4>
+            <p><strong>Bachelor of Science in User Experience Design</strong><br>Technische Hochschule Ingolstadt
+              (Bavaria), Germany (currently writing Bachelor's Thesis)</p>
+          </div>
+        </div>
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <h4>Oct 2023 – May 2024</h4>
+            <p><strong>Working Student & Intern</strong><br>Spiegel Institut Ingolstadt GmbH – UX & usability projects,
+              prototyping, workshops and client presentations (AUDI and other Volkswagen Group brands)</p>
+          </div>
+        </div>
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <h4>2022–Present</h4>
+            <p><strong>Bartender & Shift Lead (Manager on Duty)</strong><br>Nest Event Location – Leading shifts,
+              coordinating staff, some graphic design tasks, conducting tours for potential customers, main contact for
+              team and guests</p>
+          </div>
+        </div>
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <h4>2019–2020</h4>
+            <p><strong>Waitress</strong><br>Café Müller, Plauen</p>
+          </div>
+        </div>
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <h4>2013–2021</h4>
+            <p><strong>German A-Level – Abitur</strong><br>Adolph‑Diesterweg‑Gymnasium, Plauen (Saxony), Germany</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="fade-in">
+      <h1>Skills & Tools</h1>
+      <p>Here are some of the applications and tools I excel at:</p>
+      <div class="skills-grid">
+        <div class="skill-item"><img src="images/Figma-logo.svg.png" alt="Figma" loading="lazy"><span>Figma</span></div>
+        <div class="skill-item"><img src="images/Adobe_Creative_Cloud_rainbow_icon.svg.png" alt="Adobe Creative Cloud"
+            loading="lazy"><span>Adobe Creative Cloud</span></div>
+        <div class="skill-item"><img src="images/axure-logo_600x600.png" alt="Axure RP" loading="lazy"><span>Axure RP</span></div>
+        <div class="skill-item"><img src="images/Unity_2021.png" alt="Unity Engine" loading="lazy"><span>Unity Engine</span></div>
+        <div class="skill-item"><img src="images/blender_community_badge_white.png" alt="Blender" loading="lazy"><span>Blender</span></div>
+        <div class="skill-item"><img src="images/transfer-microsoft-office-to-another-computer-1.jpg" alt="MS-Office" loading="lazy"><span>Microsoft Office</span></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h1>Projects</h1>
+      <div class="timeline project-timeline">
+        <!-- Project One -->
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <h4>"Progrify" – Project 5€ Business, 2025</h4>
+            <p>In this group project, my teammate and I developed a fitness tracking app, called Progrify, aimed at
+              enhancing existing market solutions by addressing missing or incomplete features. Our focus was on
+              improving user experience through advanced data visualization and engaging gamification elements. We
+              worked collaboratively over the course of one semester, finishing with a final pitch presentation.</p>
+            <button id="see-certificate" class="contact-btn" aria-controls="certificate-overlay">See
+              certificate</button>
+            <div class="carousel" data-interval="3000" aria-roledescription="carousel">
+              <div class="carousel-inner" aria-live="polite">
+                <img src="images/5€.png" alt="Progrify – screen 1" class="active" loading="lazy">
+                <img src="images/5€2.png" alt="Progrify – screen 2" loading="lazy">
+                <img src="images/portfolio-single-17.jpg" alt="Progrify – screen 3" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project Two -->
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <h4>"Formiquest" – Designing Digital Products and Experiences (DPME), 2024</h4>
+            <p>As part of this course, we were challenged to apply our UX/UI design skills by creating an app that
+              addresses a specific market gap. The project included developing a functional prototype, conducting brief
+              user testing, and presenting a final pitch. I chose to design a fitness app inspired by the Duolingo
+              system, aiming to motivate users to train consistently and efficiently. The concept focused on healthy
+              habits, using streaks and gamification to encourage long-term engagement.</p>
+            <div class="carousel" data-interval="3000" aria-roledescription="carousel">
+              <div class="carousel-inner" aria-live="polite">
+                <img src="images/formiquest.png" alt="Formiquest – screens" class="active" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project three -->
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <h4>Project "Zukunftsnavigator", 2025</h4>
+            <p>In collaboration with the Bavarian Foresight Institute, we participated in the development of an
+              interactive, game-inspired platform that helps SMEs (Small and Medium Enterprise) build future skills –
+              both regionally in Bavaria and beyond. The website combines online and offline elements such as a trend
+              database, templates, videos, and workshop formats. An integrated forum fosters exchange and long-term use
+              of the content. As the UX design team, we created a target group–oriented, gamified, and user-friendly
+              concept, integrating AI assistants, nudging elements, and clear information structures to make the
+              introduction to trend research and foresight simple, engaging, and motivating.</p>
+            <div class="carousel" data-interval="3000" aria-roledescription="carousel">
+              <div class="carousel-inner" aria-live="polite">
+                <img src="images/ZN1.png" alt="Zukunftsnavigator – screen 1" class="active" loading="lazy">
+                <img src="images/ZN2.png" alt="Zukunftsnavigator – screen 2" loading="lazy">
+                <img src="images/ZN3.png" alt="Zukunftsnavigator – screen 3" loading="lazy">
+                <img src="images/ZN4.png" alt="Zukunftsnavigator – screen 4" loading="lazy">
+                <img src="images/ZN6.png" alt="Zukunftsnavigator – screen 5" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project four -->
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <h4>Project "Automated-Shuttlebus", 2023</h4>
+            <p>As part of the Human-Machine Interaction course and the VAMOS study, our team explored user interaction
+              with autonomous shuttle buses. We designed and developed a 3D model of the shuttle in Blender and built an
+              interactive Unity simulation, where test participants could move through the bus in a game-like
+              environment, board and exit, operate a touch display to accept a parcel, and retrieve it from a delivery
+              hatch. The bus displays showed live trip information, and our team designed all interface screens for both
+              passenger and parcel-handling features. The concept combined passenger transport and last-mile delivery,
+              simulating a seamless and engaging autonomous mobility experience.</p>
+            <div class="carousel" data-interval="3000" aria-roledescription="carousel">
+              <div class="carousel-inner" aria-live="polite">
+                <img src="images/automated_shuttlebus_2.png" alt="Automated Shuttlebus – interior 1" class="active"
+                  loading="lazy">
+                <img src="images/automated_shuttlebus_3.png" alt="Automated Shuttlebus – interior 2" loading="lazy">
+                <img src="images/automated_shuttlebus_4.png" alt="Automated Shuttlebus – UI 1" loading="lazy">
+                <img src="images/automated_shuttlebus_5.png" alt="Automated Shuttlebus – UI 2" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project five -->
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <h4>Project "CloseToReality", 2024</h4>
+            <p>As part of the Close to Reality project and study, our team developed a Unity-based VR simulation of a
+              passenger drone traveling from Ingolstadt to Munich. The goal was to investigate preferred seating
+              configurations, explore user needs and expectations for short-distance passenger drones, and assess
+              overall comfort. Testing was conducted using a VR headset, making the study of motion sickness effects a
+              key focus. Participants experienced the full flight virtually, enabling realistic feedback on seating
+              layout, cabin design, and in-flight experience.</p>
+            <div class="carousel" data-interval="3000" aria-roledescription="carousel">
+              <div class="carousel-inner" aria-live="polite">
+                <img src="images/closetoreality.png" alt="CloseToReality – VR scene" class="active" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project six -->
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <h4>Product Design – Emergency Bracelet Concept, 2023</h4>
+            <p>In the Product Design course, we were tasked with identifying a problem and creating a device to solve
+              it. I designed an emergency wristband in Blender, intended for elderly or disabled individuals. In case of
+              incidents such as a fall, users can press a button to alert emergency services. Two small integrated
+              displays provide real-time healthcare data, such as heart rate and blood pressure, offering both safety
+              and valuable health monitoring in a compact, wearable design.</p>
+            <div class="carousel" data-interval="3000" aria-roledescription="carousel">
+              <div class="carousel-inner" aria-live="polite">
+                <img src="images/fitness1.png" alt="Emergency bracelet – render 1" class="active" loading="lazy">
+                <img src="images/fitness2.png" alt="Emergency bracelet – render 2" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project seven -->
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <h4>Product Design – Plant-Assistant Concept, 2023</h4>
+            <p>In the Product Design course, we were challenged to identify a problem and create an innovative device to
+              solve it. I designed a leaf-shaped soil sensor that measures nutrient levels, moisture, and light
+              exposure. Using the connected device, users can scan their plant and receive tailored care information
+              based on the specific plant type and its needs, ensuring optimal growth and health.</p>
+            <div class="carousel" data-interval="3000" aria-roledescription="carousel">
+              <div class="carousel-inner" aria-live="polite">
+                <img src="images/PD1.png" alt="Plant Assistant – render 1" class="active" loading="lazy">
+                <img src="images/PD2.png" alt="Plant Assistant – render 2" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project eight -->
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <h4>Menu poster for "Nest" Event Location Ingolstadt, 2025</h4>
+            <p>For the Nest Event Location, I designed the drinks menus for the Take Off event. This included
+              customizing the layout, content, and pricing to fit the event’s theme. The finished menus were printed and
+              displayed throughout the venue, contributing to a consistent and appealing event atmosphere.</p>
+            <div class="carousel" data-interval="3000" aria-roledescription="carousel">
+              <div class="carousel-inner" aria-live="polite">
+                <img src="images/Getränkekarte3.png" alt="Nest – drinks menu" class="active" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project nine -->
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <h4>Visualization for "Nest" Event Location Ingolstadt, 2025</h4>
+            <p>I designed a clear, visual guide for staff, detailing how to set up the bar and stock the beverage
+              drawers. This ensures nothing is missing and makes it easy to see exactly what is needed. The guide is
+              especially helpful for new team members and is displayed for everyone as a laminated poster.</p>
+            <div class="carousel" data-interval="3000" aria-roledescription="carousel">
+              <div class="carousel-inner" aria-live="polite">
+                <img src="images/Getränkeschübe.png" alt="Nest – bar setup guide" class="active" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="certificate-overlay" role="dialog" aria-modal="true" aria-label="Certificate preview">
+      <img src="images/Screenshot 2025-08-08 142557.png" alt="Progrify certificate preview" loading="lazy">
+    </div>
+
+    <div id="img-overlay" role="dialog" aria-modal="true" aria-label="Image preview">
+      <img src="" alt="Project image preview">
+    </div>
+
+  </main>
+
+  <script>
+    // ===== Utility =====
+    const qs = (s, root = document) => root.querySelector(s);
+    const qsa = (s, root = document) => [...root.querySelectorAll(s)];
+
+    // ===== Scroll handling & active tab =====
+    const tabs = qsa('nav .tab');
+    const secs = qsa('main section');
+    window.addEventListener('scroll', () => {
+      const st = document.documentElement.scrollTop || document.body.scrollTop;
+      const dh = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = (st / dh) * 100;
+      qs('#progress-bar').style.width = pct + '%';
+
+      let cur = '';
+      secs.forEach(s => { if (st >= s.offsetTop - 200) cur = s.id; });
+      tabs.forEach(t => {
+        const isActive = t.getAttribute('href') === `#${cur}`;
+        t.classList.toggle('active', isActive);
+        if (isActive) t.setAttribute('aria-current', 'page'); else t.removeAttribute('aria-current');
+      });
+    }, { passive: true });
+
+    // ===== Fade-in on view =====
+    qsa('.fade-in').forEach(el => new IntersectionObserver((entries, obs) => {
+      entries.forEach(x => x.target.classList.toggle('visible', x.isIntersecting));
+    }, { threshold: 0.2 }).observe(el));
+
+    // ===== Custom cursor (desktop only) =====
+    // ===== Custom cursor (desktop only) with slight lag =====
+    const curEl = qs('.cursor');
+    const ol = qs('.cursor-outline');
+    const o2 = qs('.cursor-outer');
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let targetX = innerWidth / 2, targetY = innerHeight / 2;
+      let o2X = targetX, o2Y = targetY;   // slowest
+      let olX = targetX, olY = targetY;   // medium
+      let curX = targetX, curY = targetY; // fastest
+
+      addEventListener('mousemove', e => { targetX = e.clientX; targetY = e.clientY; });
+
+      function animate() {
+        o2X += (targetX - o2X) * 0.05; o2Y += (targetY - o2Y) * 0.05;
+        olX += (targetX - olX) * 0.15; olY += (targetY - olY) * 0.15;
+        curX += (targetX - curX) * 0.30; curY += (targetY - curY) * 0.30;
+
+        o2.style.transform = `translate(${o2X - 0.5 * parseFloat(getComputedStyle(o2).width)}px, ${o2Y - 0.5 * parseFloat(getComputedStyle(o2).height)}px)`;
+        ol.style.transform = `translate(${olX - 0.5 * parseFloat(getComputedStyle(ol).width)}px, ${olY - 0.5 * parseFloat(getComputedStyle(ol).height)}px)`;
+        curEl.style.transform = `translate(${curX - 10}px, ${curY - 10}px)`;
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      qsa('a,button,input,.project,.event,.cert-btn').forEach(el => {
+        el.addEventListener('mouseenter', () => { ol.style.width = '40px'; ol.style.height = '40px'; o2.style.width = '400px'; o2.style.height = '400px'; });
+        el.addEventListener('mouseleave', () => { ol.style.width = '120px'; ol.style.height = '120px'; o2.style.width = '800px'; o2.style.height = '800px'; });
+      });
+    } else {
+      [o2, ol, curEl].forEach(el => el && (el.style.display = 'none'));
+    }
+
+
+    // ===== Carousel: autoplay + controls + a11y =====
+    qsa('.carousel').forEach(carousel => {
+      const inner = qs('.carousel-inner', carousel);
+      inner.setAttribute('aria-live', 'polite');
+      const imgs = qsa('img', inner);
+      if (imgs.length <= 1) return; // nothing to rotate
+      let idx = imgs.findIndex(img => img.classList.contains('active'));
+      if (idx < 0) idx = 0, imgs[0].classList.add('active');
+      let t; const interval = parseInt(carousel.dataset.interval || '3000', 10);
+      const show = i => { imgs[idx].classList.remove('active'); idx = (i + imgs.length) % imgs.length; imgs[idx].classList.add('active'); };
+      const next = () => show(idx + 1);
+      const prev = () => show(idx - 1);
+      const play = () => t = setInterval(next, interval);
+      const stop = () => t && clearInterval(t);
+
+      // Controls
+      /*const controls = document.createElement('div');
+      controls.className = 'carousel-controls';
+      const btnPrev = Object.assign(document.createElement('button'), { type: 'button', innerHTML: '&#x25C0;', ariaLabel: 'Previous slide' });
+      const btnNext = Object.assign(document.createElement('button'), { type: 'button', innerHTML: '&#x25B6;', ariaLabel: 'Next slide' });
+      btnPrev.addEventListener('click', () => { stop(); prev(); });
+      btnNext.addEventListener('click', () => { stop(); next(); });
+      controls.append(btnPrev, btnNext);
+      carousel.appendChild(controls);
+      */
+
+      // Pause on hover/focus
+      carousel.addEventListener('mouseenter', stop);
+      carousel.addEventListener('mouseleave', play);
+      carousel.addEventListener('focusin', stop);
+      carousel.addEventListener('focusout', play);
+
+      play();
+    });
+
+    // Certificate overlay logic – Click + ESC
+    const certBtn = document.getElementById('see-certificate');
+    const certOverlay = document.getElementById('certificate-overlay');
+    if (certBtn && certOverlay) {
+      const open = () => { certOverlay.style.display = 'flex'; };
+      const close = () => { certOverlay.style.display = 'none'; };
+      certBtn.addEventListener('click', open);
+      certOverlay.addEventListener('click', close);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    }
+
+    // Projektbilder Lightbox
+    const imgOverlay = document.getElementById('img-overlay');
+    const imgOverlayImg = imgOverlay ? imgOverlay.querySelector('img') : null;
+
+    if (imgOverlay && imgOverlayImg) {
+      qsa('.carousel-inner img').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => {
+          imgOverlayImg.src = img.src;
+          imgOverlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      imgOverlay.addEventListener('click', () => {
+        imgOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+          imgOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+  </script>
+</body>
+
+
+</html>
